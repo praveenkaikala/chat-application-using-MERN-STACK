@@ -18,7 +18,7 @@ const Creategroups = () => {
 
   const creategroup=async()=>{
     const data={Groupname:Groupname}
-    await axios.post("http://localhost:5000/chat/creategroup/",data,config)
+    await axios.post("https://web-service-17f8.onrender.com/chat/creategroup/",data,config)
     setrefresh(!refresh)
     setgroupname("")
   }

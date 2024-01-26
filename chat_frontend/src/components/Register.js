@@ -23,7 +23,7 @@ const Register = () => {
            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
         },
       }
-      const response=await axios.post("http://localhost:5000/user/register/",user,config)
+      const response=await axios.post("https://web-service-17f8.onrender.com/user/register/",user,config)
       if(response)
       {
         localStorage.setItem("userdata",JSON.stringify(response))

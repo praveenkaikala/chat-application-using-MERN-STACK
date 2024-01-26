@@ -19,7 +19,7 @@ const Groups = () => {
   useEffect(()=>{
     async function fetchgroup()
     {
-       await axios.get("http://localhost:5000/chat/fetchgroup/",config).then((res)=>{
+       await axios.get("https://web-service-17f8.onrender.com/chat/fetchgroup/",config).then((res)=>{
       setgroups(res.data)
      })
     }
@@ -41,7 +41,7 @@ const Groups = () => {
     return (
        <div className="list-item" key={index} onClick={async()=>{
         const data={chatId:group._id}
-        await axios.put("http://localhost:5000/chat/joingroup/",data,config)
+        await axios.put("https://web-service-17f8.onrender.com/chat/joingroup/",data,config)
         setrefresh(!refresh)
 
        }}>

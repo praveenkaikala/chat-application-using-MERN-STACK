@@ -6,7 +6,7 @@ const Messageothers = ({props,name,index}) => {
     name=props.sender.name
    }
   return (
-    <div className="other-message-coontainer"  key={index}>
+    <div className="other-message-coontainer"  key={props._id}>
       <div className="conversation-container">
         <p className="c-icon">{name[0]}</p>
       </div>

@@ -8,15 +8,13 @@ import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { MyLocation } from '@mui/icons-material';
+import { Key, MyLocation } from '@mui/icons-material';
 import { mycontext } from './Container';
 import { io } from 'socket.io-client';
-const Endpoint="http://localhost:5000"
+const Endpoint="https://web-service-17f8.onrender.com"
 var socket;
 
 const Workarea = () => {
-  const [socketconnect,setsocketconnect]=useState(false)
-  const [msgexist,setmsgexit]=useState(true)
   const [loder,setloder]=useState(false)
   const {chatload,setchatload}=useContext(mycontext)
   const cref=useRef(null)
@@ -24,7 +22,6 @@ const Workarea = () => {
   const nav=useNavigate()
   const [chatid,chatname]=perams._id.split("&")
   const [messages,setmessages]=useState([])
-  const [messagecopy,setmessagecopy]=useState([])
   const [content,setcontent]=useState("")
   const userdata=JSON.parse(localStorage.getItem("userdata"))
   if(!userdata)
@@ -62,10 +59,9 @@ nav("/")
   useEffect(()=>{
    async function data(){
     setloder(true)
-   await axios.get("http://localhost:5000/message/"+chatid,config).then((response)=>{
+   await axios.get("https://web-service-17f8.onrender.com/message/"+chatid,config).then((response)=>{
      
       setmessages(response.data)})
-      setmessagecopy(messages)
       setloder(false)
       
    }
@@ -90,13 +86,13 @@ useEffect(()=>{
       content:messaage,
       chatId:chatid
     }
-   await axios.post("http://localhost:5000/message/",details,config).then((response)=>{
+   await axios.post("https://web-service-17f8.onrender.com/message/",details,config).then((response)=>{
   
       data=response.data
     })
     socket.emit("new message",data)
     setmessages([...messages,data])
-    setmessagecopy(messages)
+    
    
 
   }
@@ -117,7 +113,7 @@ useEffect(()=>{
         <IconButton onClick={async()=>{
           setloder(true)
           const data={chatId:chatid}
-          await axios.put("http://localhost:5000/message/deletemessages/",data,config)
+          await axios.put("https://web-service-17f8.onrender.com/message/deletemessages/",data,config)
           setchatload(!chatload)
           setloder(false)
 
@@ -132,14 +128,14 @@ useEffect(()=>{
             const sender=message.sender._id
             if(userId===sender)
             {
-              return <><Messageself props={message}  index={index}/>
+              return <div key={index}><Messageself props={message}  index={index}/>
               <div ref={cref}/>
-              </>
+              </div>
             }
             else{
-              return <><Messageothers props={message} name={chatname} index={index}/>
+              return <div key={index}><Messageothers props={message} name={chatname} index={index}/>
               <div ref={cref}/>
-              </>
+              </div>
             }
            })}
 

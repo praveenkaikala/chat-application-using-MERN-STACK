@@ -27,7 +27,7 @@ const Onlineusers = () => {
         },
       };
       axios
-        .get("http://localhost:5000/user/fetchuser/", config)
+        .get("https://web-service-17f8.onrender.com/user/fetchuser/", config)
         .then((data) => {
           setusers(data.data);
          
@@ -68,7 +68,7 @@ const Onlineusers = () => {
                   },
                 };
                 await axios.post(
-                  "http://localhost:5000/chat/",
+                  "https://web-service-17f8.onrender.com/chat/",
                   {
                     userId: user._id,
                   },

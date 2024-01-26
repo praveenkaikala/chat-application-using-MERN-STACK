@@ -36,7 +36,7 @@ const Slidebar = () => {
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       }
     }
-    axios.get("http://localhost:5000/chat/",config).then((result)=>{
+    axios.get("https://web-service-17f8.onrender.com/chat/",config).then((result)=>{
       setconversations(result.data)
       setloader(false)
 
