@@ -2,7 +2,6 @@ const expressAsyncHandler = require("express-async-handler");
 const User=require("../models/Usermodel")
 const Chat=require("../models/Chatmodel")
 const Message=require("../models/messageModel");
-const { useAsyncError } = require("react-router-dom");
 
 const allMessages = expressAsyncHandler(async (req, res) => {
     try {
