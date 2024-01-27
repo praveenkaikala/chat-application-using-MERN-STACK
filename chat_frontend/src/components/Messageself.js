@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-const Messageself = ({props,index}) => {
+
+const Messageself = ({props}) => {
 
 return (
 <div className='slef-message-coontainer' key={props._id} >

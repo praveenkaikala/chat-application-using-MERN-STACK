@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./styles.css";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {CircularProgress, IconButton } from "@mui/material";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
-import SearchIcon from "@mui/icons-material/Search";
 import Conversationitem from "./Conversationitem";
 import AddIcon from "@mui/icons-material/Add";
-import Workarea from "./Workarea";
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import axios from "axios";

@@ -1,7 +1,6 @@
 import { Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import Login from './Login'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Register = () => {

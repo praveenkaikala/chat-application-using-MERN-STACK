@@ -1,6 +1,6 @@
 import React from "react";
 
-const Messageothers = ({props,name,index}) => {
+const Messageothers = ({props,name}) => {
    if(props.chat.isGroupChat)
    {
     name=props.sender.name
