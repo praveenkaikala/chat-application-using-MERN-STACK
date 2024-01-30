@@ -66,7 +66,7 @@ nav("/")
    }
   data()
     
-  },[chatload,chatid,config])
+  },[chatload,chatid])
 
 useEffect(()=>{
   if(messages.length)
