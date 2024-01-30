@@ -11,7 +11,7 @@ import axios from "axios";
 import { mycontext } from "./Container";
 const Slidebar = () => {
   const [loader,setloader]=useState(false)
-  const {refresh,setrefresh}=useContext(mycontext)
+  const {refresh}=useContext(mycontext)
   const navigate = useNavigate();
   const logout=()=>{
     localStorage.removeItem("userdata");
@@ -38,7 +38,7 @@ const Slidebar = () => {
       setloader(false)
 
     })
-  },[refresh])
+  },[refresh,userdata.data.token])
   
   return (
     <div className="slidebar">

@@ -42,13 +42,13 @@ const Login = () => {
             <p>LOG IN TO YOUR ACCOUNT</p>
         <TextField id="outlined-basic 1" label="enter username" name="name" onChange={handlechanger} variant="outlined" />
         <TextField id="outlined-basic 2" label="enter password" name='password' onChange={handlechanger} variant="outlined" type='password'  onKeyDown={(event) => {
-                if (event.code == "Enter") {
+                if (event.code === "Enter") {
                   
                   loginhandler();
                 }
               }}/>
         <Button variant="contained" onClick={loginhandler}>log in </Button>
-        <p>DO YOU HAVE NO ACCOUNT <a href='' onClick={()=>{navigate('register')}}>REGISTER</a></p>
+        <p>DO YOU HAVE NO ACCOUNT <Button variant='containes' onClick={()=>{navigate('/register')}}>Register</Button></p>
         </div>
     </div>
   )

@@ -40,7 +40,7 @@ nav("/")
    socket=io(Endpoint)
    socket.emit("setup",userdata.data)
 
-  },[])
+  },[userdata])
   useEffect(()=>{
     socket.on("message recieved",(newmessage)=>{
       if(chatid === newmessage.chat._id)
@@ -54,7 +54,7 @@ nav("/")
   useEffect(()=>{
     
     socket.emit("join room",chatid)
-  },[chatload])
+  },[chatload,chatid])
   useEffect(()=>{
    async function data(){
     setloder(true)
@@ -66,7 +66,7 @@ nav("/")
    }
   data()
     
-  },[chatload])
+  },[chatload,chatid,config])
 
 useEffect(()=>{
   if(messages.length)
@@ -145,7 +145,7 @@ useEffect(()=>{
         setcontent(e.target.value)
       }}/>
       <IconButton onClick={sendmessage} onKeyDown={(event)=>{
-        if ( event.code == "Enter" )
+        if ( event.code === "Enter" )
         {
           sendmessage()
         }

@@ -46,7 +46,7 @@ const Register = () => {
         <TextField id="outlined-basic 2 " label="enter email" variant="outlined" name='email' onChange={handlechanger} />
         <TextField id="outlined-basic 3" label="enter password" variant="outlined" type='text' name='password' onChange={handlechanger}/>
         <Button variant="contained" onClick={registerhandler}>Register </Button>
-        <p>click here to <a href='' onClick={()=>{navigate('/')}}> login</a></p>
+        <p>click here to  <Button variant='containes' onClick={()=>{navigate('/')}}>LOGIN</Button></p>
         </div>
     </div>
   )

@@ -36,7 +36,7 @@ const Onlineusers = () => {
 
     fetchdata();
     setloader(false)
-  }, [refresh]);
+  }, [refresh,token.data.token]);
   return (
     <div className="onlineuser-container">
       <div className="sb-search">
