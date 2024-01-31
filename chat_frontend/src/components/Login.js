@@ -3,7 +3,21 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { CircularProgress } from '@mui/material'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
+  const notify = () =>{ toast('🦄 Wow so easy!', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  
+    });;
+  }
   const [progress,setprogress]=useState(false)
   const navigate=useNavigate()
   const [user,setuser]=useState({
@@ -47,9 +61,14 @@ const Login = () => {
                   loginhandler();
                 }
               }}/>
-        <Button variant="contained" onClick={loginhandler}>log in </Button>
+        <Button variant="contained" onClick={()=>{
+          loginhandler()
+          notify()
+        }
+        }>log in </Button>
         <p>DO YOU HAVE NO ACCOUNT <Button variant='containes' onClick={()=>{navigate('/register')}}>Register</Button></p>
         </div>
+        <ToastContainer />
     </div>
   )
 }

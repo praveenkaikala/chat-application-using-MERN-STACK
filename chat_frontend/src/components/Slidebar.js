@@ -38,7 +38,7 @@ const Slidebar = () => {
       setloader(false)
 
     })
-  },[refresh,userdata.data.token])
+  },[refresh])
   
   return (
     <div className="slidebar">

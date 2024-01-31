@@ -8,6 +8,7 @@ const loginController=expressAsyncHandler(async (req,res)=>{
   const user=await userModel.findOne({name})
   if(user && (await user.matchPassword(password)))
   {
+    res.status(200)
     res.json({
         _id:user.id,
         name:user.name,
@@ -17,6 +18,7 @@ const loginController=expressAsyncHandler(async (req,res)=>{
     })
   }
   else{
+    res.status(400)
     throw new Error("username or password incorrect")
   }
 })

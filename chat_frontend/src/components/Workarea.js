@@ -40,7 +40,7 @@ nav("/")
    socket=io(Endpoint)
    socket.emit("setup",userdata.data)
 
-  },[userdata])
+  },[])
   useEffect(()=>{
     socket.on("message recieved",(newmessage)=>{
       if(chatid === newmessage.chat._id)
@@ -54,7 +54,7 @@ nav("/")
   useEffect(()=>{
     
     socket.emit("join room",chatid)
-  },[chatload,chatid])
+  },[chatload])
   useEffect(()=>{
    async function data(){
     setloder(true)
@@ -66,7 +66,7 @@ nav("/")
    }
   data()
     
-  },[chatload,chatid])
+  },[chatload])
 
 useEffect(()=>{
   if(messages.length)
