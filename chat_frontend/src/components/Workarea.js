@@ -21,6 +21,7 @@ const Workarea = () => {
   const nav=useNavigate()
   const [chatid,chatname]=perams._id.split("&")
   const [messages,setmessages]=useState([])
+  const [copyMessages,setCopyMessages]=useState([])
   const [content,setcontent]=useState("")
   const userdata=JSON.parse(localStorage.getItem("userdata"))
   if(!userdata)
@@ -44,8 +45,7 @@ nav("/")
   useEffect(()=>{
     socket.on("message recieved",(newmessage)=>{
       if(chatid === newmessage.chat._id)
-      setmessages([...messages,newmessage])
-       
+      setmessages([...messages,newmessage])     
      })
      return()=>{
         socket.off("message recieved")
@@ -54,14 +54,23 @@ nav("/")
   useEffect(()=>{
     
     socket.emit("join room",chatid)
+    console.log(`joined ${chatid}`)
   },[chatload])
   useEffect(()=>{
    async function data(){
     setloder(true)
-   await axios.get("https://web-service-17f8.onrender.com/message/"+chatid,config).then((response)=>{
+    try
+    {
+       await axios.get("https://web-service-17f8.onrender.com/message/"+chatid,config).then((response)=>{
      
       setmessages(response.data)})
       setloder(false)
+    }
+    catch(err)
+    {
+     console.log(err)
+    }
+  
       
    }
   data()
@@ -85,12 +94,18 @@ useEffect(()=>{
       content:messaage,
       chatId:chatid
     }
-   await axios.post("https://web-service-17f8.onrender.com/message/",details,config).then((response)=>{
+    try{
+      await axios.post("https://web-service-17f8.onrender.com/message/",details,config).then((response)=>{
   
       data=response.data
     })
     socket.emit("new message",data)
     setmessages([...messages,data])
+    }
+   catch(err)
+   {
+    console.log(err)
+   }
     
    
 
@@ -112,9 +127,16 @@ useEffect(()=>{
         <IconButton onClick={async()=>{
           setloder(true)
           const data={chatId:chatid}
-          await axios.put("https://web-service-17f8.onrender.com/message/deletemessages/",data,config)
+          try{
+            await axios.put("https://web-service-17f8.onrender.com/message/deletemessages/",data,config)
           setchatload(!chatload)
           setloder(false)
+          }
+          catch(err)
+          {
+            console.log(err)
+          }
+          
 
         }}>
           <DeleteIcon/>
@@ -143,13 +165,13 @@ useEffect(()=>{
       <div className='text-input'>
       <input placeholder='enter message' value={content} className='search-box input-box' onChange={(e)=>{
         setcontent(e.target.value)
-      }}/>
-      <IconButton onClick={sendmessage} onKeyDown={(event)=>{
+      }} onKeyDown={(event)=>{
         if ( event.code === "Enter" )
         {
           sendmessage()
         }
-      }}>
+      }}/>
+      <IconButton onClick={sendmessage} >
         <SendIcon/>
       </IconButton>
       </div>

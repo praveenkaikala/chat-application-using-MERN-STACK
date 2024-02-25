@@ -30,7 +30,9 @@ const Onlineusers = () => {
         .then((data) => {
           setusers(data.data);
          
-        });
+        }).catch((err=>{
+          console.log(err)
+        }));
         
     }
 
@@ -66,7 +68,8 @@ const Onlineusers = () => {
                       "GET,PUT,POST,DELETE,PATCH,OPTIONS",
                   },
                 };
-                await axios.post(
+                try{
+                   await axios.post(
                   "https://web-service-17f8.onrender.com/chat/",
                   {
                     userId: user._id,
@@ -75,6 +78,11 @@ const Onlineusers = () => {
                 );
               
                 setrefresh(!refresh);
+                }
+               catch(err)
+               {
+                console.log(err)
+               }
               }}
             >
               <p className="c-icon">{user.name[0]}</p>

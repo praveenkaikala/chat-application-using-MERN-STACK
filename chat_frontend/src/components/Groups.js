@@ -19,9 +19,11 @@ const Groups = () => {
   useEffect(()=>{
     async function fetchgroup()
     {
-       await axios.get("https://web-service-17f8.onrender.com/chat/fetchgroup/",config).then((res)=>{
+     axios.get("https://web-service-17f8.onrender.com/chat/fetchgroup/",config).then((res)=>{
       setgroups(res.data)
-     })
+     }).catch((err=>{
+      console.log(err)
+     }))
     }
     fetchgroup()
   })
@@ -40,9 +42,15 @@ const Groups = () => {
   groups.map((group,index)=>{
     return (
        <div className="list-item" key={index} onClick={async()=>{
-        const data={chatId:group._id}
+        try{
+           const data={chatId:group._id}
         await axios.put("https://web-service-17f8.onrender.com/chat/joingroup/",data,config)
         setrefresh(!refresh)
+        }
+       catch(err)
+       {
+        console.log(err)
+       }
 
        }}>
     <p className="c-icon">{group.chatname[0]}</p>
