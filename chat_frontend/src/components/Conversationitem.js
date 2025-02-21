@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { mycontext } from './Container'
+import { getUserId } from '../utils/getUserId'
 const Conversationitem = ({props,userdata}) => {
   const {chatload,setchatload}=useContext(mycontext)
   let name=""
@@ -10,7 +11,8 @@ const Conversationitem = ({props,userdata}) => {
   }
   else
   {
-     if(userdata._id === props.users[0]._id)
+    const id=getUserId();
+     if(id === props.users[0]._id)
   {
     name=props.users[1].name;
   }
