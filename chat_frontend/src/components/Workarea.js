@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useMemo, useRef } from 'react'
 import './styles.css'
 import { CircularProgress, IconButton } from '@mui/material'
 import SendIcon from '@mui/icons-material/Send';
@@ -10,6 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { mycontext } from './Container';
 import { io } from 'socket.io-client';
+import { getUserId } from '../utils/getUserId';
 const Endpoint="https://web-service-17f8.onrender.com"
 var socket;
 
@@ -24,6 +25,8 @@ const Workarea = () => {
   const [copyMessages,setCopyMessages]=useState([])
   const [content,setcontent]=useState("")
   const userdata=JSON.parse(localStorage.getItem("userdata"))
+  const userId= getUserId();
+  console.log(userId)
   if(!userdata)
   {
 nav("/")
@@ -62,7 +65,7 @@ nav("/")
     try
     {
        await axios.get("https://web-service-17f8.onrender.com/message/"+chatid,config).then((response)=>{
-     
+     console.log("chat",response.data)
       setmessages(response.data)})
       setloder(false)
     }
@@ -145,7 +148,6 @@ useEffect(()=>{
       <div className='message-container'>
            {loder?<CircularProgress color="secondary" style={{"heigth":"100%","alignSelf":"center","justifySelf":"center"}}/>:
            messages.map((message,index)=>{
-            const userId=userdata.data._id;
             const sender=message.sender._id
             if(userId===sender)
             {

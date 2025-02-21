@@ -31,7 +31,7 @@ const Login = () => {
       if(response.status===200)
       {
        
-        localStorage.setItem("userdata",JSON.stringify(response))
+        localStorage.setItem("userdata",JSON.stringify({...response,data:{...response.data,id:response.data._id}}))
         navigate("/app/welcome")
       }
     }
